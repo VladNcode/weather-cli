@@ -10,7 +10,7 @@ const TOKEN_DICTIONARY = {
 };
 
 const saveKeyValue = async (key, value) => {
-  const data = await readData();
+  const data = (await readData()) || {};
   data[key] = value;
 
   await promises.writeFile(filePath, JSON.stringify(data));

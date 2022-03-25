@@ -32,6 +32,8 @@ const saveCity = async city => {
   } catch (e) {
     if (e?.response?.status === 404) {
       printError('City is incorrect!');
+    } else if (e?.response?.status === 401) {
+      printError('Token is incorrect!');
     } else {
       printError(e.message);
     }
