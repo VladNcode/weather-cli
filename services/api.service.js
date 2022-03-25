@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
 
 const getWeather = async function (city) {
-  const token = await getKeyValue(TOKEN_DICTIONARY.token);
+  const token = process.env.TOKEN || (await getKeyValue(TOKEN_DICTIONARY.token));
 
   if (!token) {
     throw new Error('API KEY not set, set it with "-t [API_KEY]"');
@@ -33,9 +33,8 @@ const getWeather = async function (city) {
     units: 'metric',
   };
 
-  const response = await axios.get(url, { params });
-
-  console.log(response.data);
+  const { data } = await axios.get(url, { params });
+  return data;
 };
 
 export { getWeather };

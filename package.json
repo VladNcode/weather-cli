@@ -29,8 +29,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "chalk": "^5.0.1",
-    "dedent": "^0.7.0",
-    "dotenv": "^16.0.0"
+    "dedent": "^0.7.0"
   },
   "prettier": {
     "singleQuote": true,
