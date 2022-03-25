@@ -2,12 +2,22 @@
 
 import { getArgs } from './helpers/args.js';
 import { printError, printHelp, printSuccess } from './services/log.service.js';
-import { getKeyValue, saveKeyValue } from './services/storage.service.js';
+import { getKeyValue, saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
+import { getWeather } from './services/api.service.js';
 
-const saveData = async (type, data) => {
+import { config } from 'dotenv';
+config({ path: './config.env' });
+
+console.log(process.env.API_KEY);
+
+const saveToken = async token => {
+  if (!token.length) {
+    return printError('No token provided!');
+  }
+
   try {
-    await saveKeyValue(`${type === 'token' ? 'token' : 'town'}`, data);
-    printSuccess(`${type === 'token' ? 'Token' : 'Town'} was saved!`);
+    await saveKeyValue(TOKEN_DICTIONARY.token, token);
+    printSuccess('Token was saved!');
   } catch (e) {
     printError(e.message);
   }
@@ -23,12 +33,13 @@ const initCLI = function () {
 
   if (args.s) {
     // Save town
-    return saveData('town', args.s);
+    // return saveData('town', args.s);
+    getWeather('Kharkiv');
   }
 
   if (args.t) {
     // Save token
-    return saveData('token', args.t);
+    return saveToken(args.t);
   }
 
   // Show weather
