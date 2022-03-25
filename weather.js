@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-import dedent from 'dedent';
-import chalk from 'chalk';
 import { getArgs } from './helpers/args.js';
 import { printError, printHelp, printSuccess, printWeather } from './services/log.service.js';
 import { getKeyValue, saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
@@ -42,7 +40,7 @@ const saveCity = async city => {
 
 const getForecast = async () => {
   try {
-    const city = await getKeyValue('city');
+    const city = process.env.CITY || (await getKeyValue('city'));
     const data = await getWeather(city);
     printWeather(data);
   } catch (e) {
@@ -75,7 +73,7 @@ const initCLI = function () {
   }
 
   // Show weather
-  getForecast();
+  return getForecast();
 };
 
 initCLI();

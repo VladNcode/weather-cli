@@ -1,5 +1,5 @@
 {
-  "name": "weather-cli",
+  "name": "weather-cli-pj",
   "version": "1.0.0",
   "description": "CLI for getting weather",
   "main": "weather.js",
@@ -15,15 +15,15 @@
     "weather-cli"
   ],
   "type": "module",
-  "author": "",
+  "author": "Vladyslav Nikiforov",
   "license": "ISC",
-  "homepage": "blahblah",
+  "homepage": "https://github.com/VladNcode/",
   "repository": {
     "type": "git",
-    "url": "blahblah"
+    "url": "https://github.com/VladNcode/weather-cli"
   },
   "bugs": {
-    "url": "blahblah",
+    "url": "https://github.com/VladNcode/",
     "email": "vladncode@gmail.com"
   },
   "dependencies": {
